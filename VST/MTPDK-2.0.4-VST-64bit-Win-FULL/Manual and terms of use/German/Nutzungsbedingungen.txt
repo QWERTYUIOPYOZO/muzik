@@ -1,0 +1,11 @@
+Nutzungsbedingungen:
+
+Die Benutzung dieser Software geschieht auf eigene Gefahr. Der Hersteller kann nicht für Schäden oder Datenverlust im Zusammenhang mit dieser Software haftbar gemacht werden. Wenn Sie mit dieser Vereinbarung nicht einverstanden sind, dann installieren Sie diese Software nicht.
+
+Zwar ist es extrem unwahrscheinlich, dass unsere Software Schäden auf Ihrem System verursacht und sämtliche Tests liefen ebenfalls reibungslos - doch trotzdem möchten wir uns mit dieser Erklärung der Haftung entziehen.
+
+Bei Fragen und Problemen können Sie uns jedoch selbstverständlich über unsere Webseite kontaktieren. Wir versuchen in jedem Fall weiterzuhelfen.
+
+Vielen Dank für das Verständnis.
+
+Das Plugin darf für kommerzielle Projekte verwendet werden.

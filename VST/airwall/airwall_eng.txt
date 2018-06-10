@@ -1,0 +1,11 @@
+airwall manual
+
+this plugin only for stereo source.
+
+power     Turns effect ON/OFF
+width     sets width of effect.
+distance  sets distance of effect
+balance   Adjusts low freq of sound
+
+SLJ
+http://freett.com/synthedit/index_e.html

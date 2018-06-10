@@ -1,0 +1,938 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Language" content="ja">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>BasicCompマニュアル</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<style>
+<!--
+* {
+  font-family: 'Meiryo', sans-serif;
+}
+
+.container {
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+
+.navbar-default {
+  background: none;
+  border: none;
+}
+
+.navbar-default .navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.navbar-default ul {
+  width: 100%;
+}
+
+.navbar-default .ba-list {
+  float: none;
+  letter-spacing: 0;
+  font-size: 14px;
+}
+
+.navbar-default .ba-list a {
+  float: none;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.navbar-default .ba-list.ba__active a {
+  background: none;
+  color: #111;
+  font-weight: bold;
+}
+
+.ba-title {
+  color: #111;
+  margin-bottom: 1em;
+}
+
+.ba-heading {
+  padding: 0.25em 0 0.25em 0.75em;
+	border-left: 4px solid #466496;
+  font-size: 22px;
+	display: block;
+  text-align: left;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  padding-left: 0.618em;
+  margin-bottom: 1em;
+  position: relative;
+  color: #111;
+  margin-top: 2em;
+}
+
+.ba-heading::after {
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  content: '';
+  left: 0.618em;
+  right: 0.618em;
+  height: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.ba-sub-heading {
+  font-size: 14px;
+	display: block;
+  text-align: left;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  margin-bottom: 1em;
+  position: relative;
+  color: #111;
+  margin-top: 2em;
+}
+
+.ba-sub2-heading {
+  font-size: 14px;
+	display: block;
+  text-align: left;
+  letter-spacing: 0.2em;
+  margin-bottom: 1em;
+  position: relative;
+  color: #111;
+  margin-top: 2em;
+}
+
+.ba-sub-content {
+  padding-left: 1.3em;
+  padding-right: 1.3em;
+}
+
+.ba-text {
+  font-size: 1em;
+  line-height: 1.625em;
+  letter-spacing: 0.05em;
+  text-indent: 0em;
+  color: #222;
+  position: relative;
+}
+
+.ba-text .ba__bold {
+  font-weight: bold;
+}
+
+.ba-list {
+  padding-left: 0;
+  line-height: 1.625em;
+  letter-spacing: 0.05em;
+  color: #222;
+}
+
+.ba-list.ba__indent a {
+  padding-left: 1em;
+}
+
+.ba-image {
+  -webkit-box-shadow: 4px 4px 24px 0px rgba(148,148,148,0.75);
+  -moz-box-shadow: 4px 4px 24px 0px rgba(148,148,148,0.75);
+  box-shadow: 4px 4px 24px 0px rgba(148,148,148,0.75);
+  border-radius: 4px;
+}
+
+dl {
+  margin-top: 1em;
+  line-height: 1.625em;
+  letter-spacing: 0.1em;
+  color: #222;
+}
+dd {
+  margin-left: 1em;
+}
+pre {
+  height: 8em;
+}
+-->
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="ba-title" id="top">BasicCompマニュアル <small><small>VSTプラグイン配布元: <a href="https://bakuage.com/">音圧爆上げくん</a></small></small></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation" id="sidebar">
+        <ul class="nav navbar-nav">
+          <li class="ba-list"><a href="#introduction">BasicCompとは?</a></li>
+          <li class="ba-list"><a href="#installation">インストール方法</a></li>
+          <li class="ba-list"><a href="#usage">使ってみよう！</a></li>
+          <li class="ba-list ba__indent"><a href="#usage_fixed_volume">Fixed Volumeを調節して基準音量をあわせる</a></li>
+          <li class="ba-list ba__indent"><a href="#usage_ratio">Ratioを調節してダイナミックレンジを調節する</a></li>
+          <li class="ba-list ba__indent"><a href="#usage_speed">Speedを用途に応じて選ぶ</a></li>
+          <li class="ba-list ba__indent"><a href="#usage_stereo_expander">Stereo Expanderで音場を広げる</a></li>
+          <li class="ba-list"><a href="#detail">詳しい解説</a></li>
+          <li class="ba-list ba__indent"><a href="#detail_introduction">はじめに</a></li>
+          <li class="ba-list ba__indent"><a href="#detail_fixed_volume">Fixed Volume</a></li>
+          <li class="ba-list ba__indent"><a href="#detail_threshold">スレッショルド</a></li>
+          <li class="ba-list ba__indent"><a href="#detail_speed">Speed</a></li>
+          <li class="ba-list ba__indent"><a href="#detail_stereo_expander">Stereo Expander</a></li>
+          <li class="ba-list"><a href="#ui">画面の見方と操作</a></li>
+          <li class="ba-list"><a href="#notes">注意事項</a></li>
+          <li class="ba-list"><a href="#terms_of_use">使用条件</a></li>
+          <li class="ba-list"><a href="#release">更新履歴</a></li>
+          <li class="ba-list"><a href="#license">ライセンス</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="introduction" style="margin-top: 0;">BasicCompとは?</h2>
+        <div class="ba-sub-content">
+          <p class="ba-text">
+            BasicCompは、
+            <span class="ba__bold">自然にダイナミックレンジを圧縮することに特化</span>した、
+            高音質のVSTコンプレッサープラグインです。
+            自然さに特化しているのでマスタリング、ボーカル、ドラムに最適です。
+            <a href="https://bakuage.com/">音圧爆上げくん</a>の内部処理でも使われています。
+
+            Fixed Volumeという、レシオを変えても出力音量が変わらないようにする機能を持つので、
+            出力音量の変化に惑わされることなくレシオによるダイナミックレンジの変化だけを集中して聴くことができます。
+
+            Speedという一つの設定によって、
+            アタック、リリース、ルックアヘッドの設定を自動で行う機能を持つので、
+            誰でも簡単に<span class="ba__bold">距離感/奥行きとダイナミックレンジ</span>の操作に最適な値を設定することができます。
+
+            Stereo Expanderを使うと、
+            一つのパラメータを操作するだけで、<span class="ba__bold">自然に音場を広げる</span>ことができます。
+          </p>
+          <img src="./images/basic_comp.png" class="img-responsive ba-image" alt="プラグイン画像">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="installation">インストール方法</h2>
+        <div class="ba-sub-content">
+          <p class="ba-text">BasicComp.vst3とBasicComp64.vst3を以下の場所にコピーしてください。</p>
+          <ul class="list-unstyled">
+            <li class="ba-list">C:\Program Files (x86)\Common Files\VST3\BasicComp.vst3</li>
+            <li class="ba-list">C:\Program Files\Common Files\VST3\BasicComp64.vst3</li>
+          </ul>
+          <p class="ba-text">DAWがVST3に対応していない場合は、VST2版(BasicCompVst2.dll, BasicComp64Vst2.dll)を以下の場所にコピーしてください(DAWによってインストール先が異なる場合があります)。</p>
+          <ul class="list-unstyled">
+            <li class="ba-list">C:\Program Files (x86)\VstPlugins\BasicCompVst2.dll</li>
+            <li class="ba-list">C:\Program Files (x86)\VstPlugins\BasicComp64Vst2.dll</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="usage">使ってみよう！</h2>
+        <div class="ba-sub-content">
+          <p class="ba-text">
+            ここではBasicCompの使い方を順番に説明していきます。
+          </p>
+          <p class="help-block">※文中のカッコ内の数字は画面上の数字に対応します。</p>
+          
+          <img src="./images/ui.png" class="img-responsive ba-image" alt="プラグイン画面説明画像">
+
+          <h3 class="ba-sub-heading" id="usage_fixed_volume">Fixed Volumeを調節して基準音量をあわせる</h3>
+          <ol class="list-unstyled">
+            <li class="ba-list">1. チャンネルにBasicCompをインサートして音を再生してみます。</li>
+            <li class="ba-list">2. プラグイン画面の左のグラフに入力音量(5)が表示されます。</li>
+            <li class="ba-list">3. グラフ上のFixed Volume(9)が、入力音量の平均に近くなるようにFixed Volume(1)を調節します。</li>
+          </ol>
+          <a href="#detail_fixed_volume">Fixed Volumeの詳しい解説はこちら</a>
+
+          <h3 class="ba-sub-heading" id="usage_ratio">Ratioを調節してダイナミックレンジを調節する</h3>
+          <ol class="list-unstyled">
+            <li class="ba-list">1. Ratio(2)を調節してダイナミックレンジを圧縮してみます。ここは一般的なコンプレッサーと同じ作業です。</li>
+            <li class="ba-list">2. Fixed Volume機能のおかげでRatioを変えても出力音量が変動しづらいと思いますが、もし変動する場合はFixed Volume(1)を微調整してください。</li>
+          </ol>
+
+          <h3 class="ba-sub-heading" id="usage_speed">Speedを用途に応じて選ぶ</h3>
+          <p class="ba-text">Speed(3)を以下の2種類の設定から選んでください。</p>
+          <ol class="list-unstyled">
+            <li class="ba-list">Fast: 距離感/奥行きを変えたい場合はこちら。
+              少し暴れているトラックの奥行き感を狭くして空間の奥の方に配置する用途などに適しています。
+            </li>
+            <li class="ba-list">Slow: 距離感/奥行きを維持したままダイナミックレンジを圧縮したい場合はこちら。
+              ドラム/ボーカルなど臨場感を保ったまま前面に配置したいトラックや、マスタリングに適しています。
+            </li>
+          </ol>
+          <a href="#detail_speed">Speedの詳しい解説はこちら</a>
+
+          <h3 class="ba-sub-heading" id="usage_stereo_expander">Stereo Expanderで音場を広げる</h3>
+          <ol class="list-unstyled">
+            <li class="ba-list">1. Stereo Expander(4)を調節してみて、良い音になったと感じた位置で止めてください。</li>
+            <li class="ba-list">2. 他のパラメータと違い、Stereo Expanderによる音の変化はわかりづらいので注意して聴いてみてください。</li>
+          </ol>
+          <a href="#detail_stereo_expander">Stereo Expanderの詳しい解説はこちら</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="detail">詳しい解説</h2>
+        <div class="ba-sub-content">
+          <h3 class="ba-sub-heading" id="detail_introduction">はじめに</h3>
+          <p class="ba-text">
+            BasicCompではパラメータの数と設定できる範囲を意図的に絞っています。
+            音楽制作では、トライアンドエラーを繰り返しながら各プラグインの最適なパラメータ設定を模索することが多いですが、
+            一般的なコンプレッサーでは調節する必要のあるパラメータが多いので、トライアンドエラーに時間がかかります。
+            その結果、限られた時間内で全てのパラメータをベストに設定しきるということは難しいです。
+            BasicCompでは、
+            アルゴリズムによって自動設定できるパラメータを積極的に自動設定して、
+            調節が必要なパラメータを減らすことで、
+            より重要なパラメータに集中できるようにしています。
+            一般的なコンプレッサーと比べて設定できるパラメータに違いがあるので、
+            その対応付けなども含めて、
+            BasicCompの技術寄りの部分を説明していきます。
+          </p>
+
+          <h3 class="ba-sub-heading" id="detail_fixed_volume">Fixed Volume</h3>
+          <p class="ba-text">
+            Fixed Volumeは、簡単に言えばメイクアップゲインとスレッショルドを自動で調節してくれる機能です。
+            一般的なコンプレッサーではRatioを変化させると音量が変わってしまうので、
+            その都度メイクアップゲインを調節しないと出力音量を安定させることができません。
+            BasicCompでは、あらかじめ入力音の平均値付近にFixed Volumeをあわせておくことで、Ratioを変えても出力音量が変わらないようにすることができます。
+            この機能によって、出力音量の変動に気をとられることなく、純粋にダイナミックレンジの変化を聴くことができます。
+            正確には、Fixed Volumeは入力音と出力音の音量が同じになるようなポイントです。
+            例えば、Fixed Volumeが-20dBのときは、-20dBの入力音がそのまま音量が変化することなく-20dBで出力されます。
+          </p>
+
+          <h3 class="ba-sub-heading" id="detail_threshold">スレッショルド</h3>
+          <p class="ba-text">
+            スレッショルドは、Fixed Volumeから40dB下げた値に自動設定されます。
+            これはダイナミックレンジが40dB以下で、S/N比が40dB以上の入力音源に最適な値なので、
+            BasicCompが得意とするマスタリング、ボーカル、ドラムなどを含め、ほとんどの音源に対して有効です。
+          </p>
+
+          <h3 class="ba-sub-heading" id="detail_speed">Speed</h3>
+          <p class="ba-text">
+            Speedは、一般的なコンプレッサーにおけるアタック(Attack)、リリース(Release)、ルックアヘッド(Look-ahead)に対応しています。
+            ただし、BasicCompではそれらを個別に設定できるようにはせずに、
+            Speedによって自動で設定するようにしています。
+            設定値は、音響心理学の研究結果を元に、
+            自然にダイナミックレンジを圧縮することに特化した値を選んでいます。
+            Fastは音の距離感や奥行きの操作に適した値、
+            Slowはダイナミックレンジの操作に適した値になっています。
+          </p>
+
+          <h3 class="ba-sub-heading" id="detail_stereo_expander">Stereo Expander</h3>
+          <p class="ba-text">
+            Stereo Expanderは、音場を広げてステレオ感を強めてくれる機能です。
+            Pannerプラグインに付属していることが多い、
+            MS(Mid-Side)に信号を分けてSide成分を強めるだけの単純なStereo Expanderとは違い、
+            LRチャンネルの音が互いに逆相で交じり合うことを防いでいるので、
+            不自然な音になることが少ないです。
+            アルゴリズムは、MSコンプレッション(Mid-Side Compression)をベースにしていますが、
+            パラメータの自動設定により、一つのパラメータで手軽に音場を広げることができます。
+            自動音量補正が働くので、
+            MSコンプレッションのように副作用としてダイナミックレンジが小さくなってしまうことが無いです。
+            全体のダイナミックレンジはRatioで、ステレオ感はStereo Expanderで独立に調節することが可能です。
+            そのため、Ratioを1に設定することでStereo Expanderだけを使用することもできます。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="ui">画面の見方と操作</h2>
+        <div class="ba-sub-content">
+          <img src="./images/ui.png" class="img-responsive ba-image" alt="プラグイン画面説明画像">
+          <dl>
+            <dt>1. Fixed Volume設定</dt>
+            <dt>2. Ratio設定</dt>
+            <dt>3. Speed設定</dt>
+            <dt>4. Stereo Expander設定</dt>
+            <dd>
+              つまみをマウスでドラッグすることで値を変更することができます。
+              Altを押しながらドラッグすると操作感が変わるのでお好みで使ってください。
+              方向キーまたはマウスホイールによっても値を変更することができます。
+              この場合Shiftを押しながら変更することで刻み幅を細かくすることができます。
+              Ctrlを押しながらクリックするとデフォルト値に戻すことができます。
+              右クリックでDAW標準のメニューを表示することができます(FL StudioのBridgeを利用している場合はメニューを表示できません)。
+            </dd>
+            <dt>5. 入力音量(dB)</dt>
+            <dd>横軸が入力音量を表します。</dd>
+            <dt>6. 出力音量(dB)</dt>
+            <dd>縦軸が出力音量を表します。</dd>
+            <dt>7. 音量圧縮曲線</dt>
+            <dd>コンプレッサーによって圧縮した結果、入力音量に対して出力音量がどのような関係になるかを表します。</dd>
+            <dt>8. スレッショルド</dt>
+            <dd>自動設定されるスレッショルドです。この値よりも小さい入力は圧縮されません。</dd>
+            <dt>9. グラフ上のFixed Volume表示</dt>
+            <dd>Fixed Volumeの設定値と入力値の平均を比較しやすいように、設定値をグラフ上に十字の青線で表示しています。</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="notes">注意事項</h2>
+        <div class="ba-sub-content">
+          <ul>
+            <li class="ba-list">環境によっては動作しない可能性があります。</li>
+            <li class="ba-list">遅延(Latency)のあるプラグインなので、DAWの遅延補償(別名: 遅延補正, Delay Compensation)を有効にして使用してください。</li>            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="terms_of_use">使用条件</h2>
+        <div class="ba-sub-content">
+          <ul>
+            <li class="ba-list">商用、非商用を問わず無償で使用可能です。</li>
+            <li class="ba-list">再配布禁止です。</li>
+            <li class="ba-list">利用した事によるいかなる損害も作者は一切の責任を負いません。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="release">更新履歴</h2>
+        <div class="ba-sub-content"> 
+          <dl>
+            <dt>2016/12/24 v1.1.4</dt>
+            <dd>
+              <ul>
+                <li>PreSonus Studio Oneで正しく音声処理が行われない問題を修正。</li>
+              </ul>
+            </dd>
+            <dt>2016/12/03 v1.1.3</dt>
+            <dd>
+              <ul>
+                <li>VST2に対応</li>
+              </ul>
+            </dd>
+            <dt>2016/11/24 v1.1.2</dt>
+            <dd>
+              <ul>
+                <li>まれにプリセットが正常に保存できないバグを修正</li>
+              </ul>
+            </dd>
+            <dt>2016/11/19 v1.1.1</dt>
+            <dd>
+              <ul>
+                <li>プリセットロード時にフリーズするバグを修正</li>               
+              </ul>
+            </dd>
+            <dt>2016/10/31 v1.1.0</dt>
+            <dd>
+              <ul>
+                <li>環境によってフォント表示が崩れる問題を修正しました。</li>
+                <li>つまみを右クリックしたときに表示されるメニューにHelpを追加しました。</li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="ba-heading" id="license">ライセンス</h2>
+        <div class="ba-sub-content">
+          Copyright 2016 音圧爆上げくん All Rights Reserved.
+          <h3 class="ba-sub-heading">依存ライブラリ</h3>
+          <p class="ba-text">
+            BasicCompのビルドには以下のライブラリが使用されています。
+          </p>             
+          <p class="ba-text"><a href="https://github.com/kazuho/picojson">https://github.com/kazuho/picojson</a></p>
+<pre>
+Copyright 2009-2010 Cybozu Labs, Inc.
+Copyright 2011-2014 Kazuho Oku
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</pre>
+          
+          <p class="ba-text">VST GUI 4.3</p>
+<pre>
+-----------------------------------------------------------------------------
+ VSTGUI LICENSE
+ (c) 2015, Steinberg Media Technologies, All Rights Reserved
+-----------------------------------------------------------------------------
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+ 
+   * Redistributions of source code must retain the above copyright notice, 
+     this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice,
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of the Steinberg Media Technologies nor the names of its
+     contributors may be used to endorse or promote products derived from this 
+     software without specific prior written permission.
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+ IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+ INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE  OF THIS SOFTWARE, EVEN IF ADVISED
+ OF THE POSSIBILITY OF SUCH DAMAGE.
+-----------------------------------------------------------------------------
+</pre>
+
+          <p class="ba-text">VST SDK 3.6.6</p>       
+<pre>
+-----------------------------------------------------------------------------
+  LICENSE
+  (c) 2016, Steinberg Media Technologies GmbH, All Rights Reserved
+-----------------------------------------------------------------------------
+  Redistribution and use in source and binary forms, with or without modification,
+  are permitted provided that the following conditions are met:
+
+  * Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+  * Neither the name of the Steinberg Media Technologies nor the names of its
+  contributors may be used to endorse or promote products derived from this
+  software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+  OF THE POSSIBILITY OF SUCH DAMAGE.
+-----------------------------------------------------------------------------
+</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+<!--
+// http://www.learningjquery.com/2007/10/improved-animated-scrolling-script-for-same-page-links
+// Copyright 2006-2016 Learning jQuery and participating authors. Written content on this site is under a Creative Commons License. Code examples are under your choice of MIT or GPL license.
+$(function() {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        var currentPosition = $(window).scrollTop();
+        var newPosition = target.offset().top - 16;
+        var pixelPerSec = 1000;
+        var maxDuration = 800;
+        var duration = Math.min(maxDuration, 1000 * Math.abs(newPosition - currentPosition) / pixelPerSec);
+
+        $('html, body').animate({
+          scrollTop: newPosition,
+        }, {
+          queue: false,
+          duration: duration,
+        });
+        return false;
+      }
+    }
+  });
+});
+// -->
+</script>
+<script>
+<!--
+/*
+Copyright 2014-2016 Anthony Garand http://garand.me
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+// Sticky Plugin v1.0.4 for jQuery
+// =============
+// Author: Anthony Garand
+// Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
+// Improvements by Leonardo C. Daronco (daronco)
+// Created: 02/14/2011
+// Date: 07/20/2015
+// Website: http://stickyjs.com/
+// Description: Makes an element on the page stick on the screen as you scroll
+//              It will only set the 'top' and 'position' of your element, you
+//              might need to adjust the width in some cases.
+
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node/CommonJS
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+    var slice = Array.prototype.slice; // save ref to original slice()
+    var splice = Array.prototype.splice; // save ref to original slice()
+
+  var defaults = {
+      topSpacing: 0,
+      bottomSpacing: 0,
+      className: 'is-sticky',
+      wrapperClassName: 'sticky-wrapper',
+      center: false,
+      getWidthFrom: '',
+      widthFromWrapper: true, // works only when .getWidthFrom is empty
+      responsiveWidth: false,
+      zIndex: 'auto'
+    },
+    $window = $(window),
+    $document = $(document),
+    sticked = [],
+    windowHeight = $window.height(),
+    scroller = function() {
+      var scrollTop = $window.scrollTop(),
+        documentHeight = $document.height(),
+        dwh = documentHeight - windowHeight,
+        extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
+
+      for (var i = 0, l = sticked.length; i < l; i++) {
+        var s = sticked[i],
+          elementTop = s.stickyWrapper.offset().top,
+          etse = elementTop - s.topSpacing - extra;
+
+        //update height in case of dynamic content
+        s.stickyWrapper.css('height', s.stickyElement.outerHeight());
+
+        if (scrollTop <= etse) {
+          if (s.currentTop !== null) {
+            s.stickyElement
+              .css({
+                'width': '',
+                'position': '',
+                'top': '',
+                'z-index': ''
+              });
+            s.stickyElement.parent().removeClass(s.className);
+            s.stickyElement.trigger('sticky-end', [s]);
+            s.currentTop = null;
+          }
+        }
+        else {
+          var newTop = documentHeight - s.stickyElement.outerHeight()
+            - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+          if (newTop < 0) {
+            newTop = newTop + s.topSpacing;
+          } else {
+            newTop = s.topSpacing;
+          }
+          if (s.currentTop !== newTop) {
+            var newWidth;
+            if (s.getWidthFrom) {
+                newWidth = $(s.getWidthFrom).width() || null;
+            } else if (s.widthFromWrapper) {
+                newWidth = s.stickyWrapper.width();
+            }
+            if (newWidth == null) {
+                newWidth = s.stickyElement.width();
+            }
+            s.stickyElement
+              .css('width', newWidth)
+              .css('position', 'fixed')
+              .css('top', newTop)
+              .css('z-index', s.zIndex);
+
+            s.stickyElement.parent().addClass(s.className);
+
+            if (s.currentTop === null) {
+              s.stickyElement.trigger('sticky-start', [s]);
+            } else {
+              // sticky is started but it have to be repositioned
+              s.stickyElement.trigger('sticky-update', [s]);
+            }
+
+            if (s.currentTop === s.topSpacing && s.currentTop > newTop || s.currentTop === null && newTop < s.topSpacing) {
+              // just reached bottom || just started to stick but bottom is already reached
+              s.stickyElement.trigger('sticky-bottom-reached', [s]);
+            } else if(s.currentTop !== null && newTop === s.topSpacing && s.currentTop < newTop) {
+              // sticky is started && sticked at topSpacing && overflowing from top just finished
+              s.stickyElement.trigger('sticky-bottom-unreached', [s]);
+            }
+
+            s.currentTop = newTop;
+          }
+
+          // Check if sticky has reached end of container and stop sticking
+          var stickyWrapperContainer = s.stickyWrapper.parent();
+          var unstick = (s.stickyElement.offset().top + s.stickyElement.outerHeight() >= stickyWrapperContainer.offset().top + stickyWrapperContainer.outerHeight()) && (s.stickyElement.offset().top <= s.topSpacing);
+
+          if( unstick ) {
+            s.stickyElement
+              .css('position', 'absolute')
+              .css('top', '')
+              .css('bottom', 0)
+              .css('z-index', '');
+          } else {
+            s.stickyElement
+              .css('position', 'fixed')
+              .css('top', newTop)
+              .css('bottom', '')
+              .css('z-index', s.zIndex);
+          }
+        }
+      }
+    },
+    resizer = function() {
+      windowHeight = $window.height();
+
+      for (var i = 0, l = sticked.length; i < l; i++) {
+        var s = sticked[i];
+        var newWidth = null;
+        if (s.getWidthFrom) {
+            if (s.responsiveWidth) {
+                newWidth = $(s.getWidthFrom).width();
+            }
+        } else if(s.widthFromWrapper) {
+            newWidth = s.stickyWrapper.width();
+        }
+        if (newWidth != null) {
+            s.stickyElement.css('width', newWidth);
+        }
+      }
+    },
+    methods = {
+      init: function(options) {
+        return this.each(function() {
+          var o = $.extend({}, defaults, options);
+          var stickyElement = $(this);
+
+          var stickyId = stickyElement.attr('id');
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName;
+          var wrapper = $('<div><' + '/div>')
+            .attr('id', wrapperId)
+            .addClass(o.wrapperClassName);
+
+          stickyElement.wrapAll(function() {
+            if ($(this).parent("#" + wrapperId).length == 0) {
+                    return wrapper;
+            }
+});
+
+          var stickyWrapper = stickyElement.parent();
+
+          if (o.center) {
+            stickyWrapper.css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
+          }
+
+          if (stickyElement.css("float") === "right") {
+            stickyElement.css({"float":"none"}).parent().css({"float":"right"});
+          }
+
+          o.stickyElement = stickyElement;
+          o.stickyWrapper = stickyWrapper;
+          o.currentTop    = null;
+
+          sticked.push(o);
+
+          methods.setWrapperHeight(this);
+          methods.setupChangeListeners(this);
+        });
+      },
+
+      setWrapperHeight: function(stickyElement) {
+        var element = $(stickyElement);
+        var stickyWrapper = element.parent();
+        if (stickyWrapper) {
+          stickyWrapper.css('height', element.outerHeight());
+        }
+      },
+
+      setupChangeListeners: function(stickyElement) {
+        if (window.MutationObserver) {
+          var mutationObserver = new window.MutationObserver(function(mutations) {
+            if (mutations[0].addedNodes.length || mutations[0].removedNodes.length) {
+              methods.setWrapperHeight(stickyElement);
+            }
+          });
+          mutationObserver.observe(stickyElement, {subtree: true, childList: true});
+        } else {
+          if (window.addEventListener) {
+            stickyElement.addEventListener('DOMNodeInserted', function() {
+              methods.setWrapperHeight(stickyElement);
+            }, false);
+            stickyElement.addEventListener('DOMNodeRemoved', function() {
+              methods.setWrapperHeight(stickyElement);
+            }, false);
+          } else if (window.attachEvent) {
+            stickyElement.attachEvent('onDOMNodeInserted', function() {
+              methods.setWrapperHeight(stickyElement);
+            });
+            stickyElement.attachEvent('onDOMNodeRemoved', function() {
+              methods.setWrapperHeight(stickyElement);
+            });
+          }
+        }
+      },
+      update: scroller,
+      unstick: function(options) {
+        return this.each(function() {
+          var that = this;
+          var unstickyElement = $(that);
+
+          var removeIdx = -1;
+          var i = sticked.length;
+          while (i-- > 0) {
+            if (sticked[i].stickyElement.get(0) === that) {
+                splice.call(sticked,i,1);
+                removeIdx = i;
+            }
+          }
+          if(removeIdx !== -1) {
+            unstickyElement.unwrap();
+            unstickyElement
+              .css({
+                'width': '',
+                'position': '',
+                'top': '',
+                'float': '',
+                'z-index': ''
+              })
+            ;
+          }
+        });
+      }
+    };
+
+  // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
+  if (window.addEventListener) {
+    window.addEventListener('scroll', scroller, false);
+    window.addEventListener('resize', resizer, false);
+  } else if (window.attachEvent) {
+    window.attachEvent('onscroll', scroller);
+    window.attachEvent('onresize', resizer);
+  }
+
+  $.fn.sticky = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.init.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
+  };
+
+  $.fn.unstick = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.unstick.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
+  };
+  $(function() {
+    setTimeout(scroller, 0);
+  });
+}));
+// -->
+</script>
+<script>
+<!--
+  $(document).ready(function(){
+    var TEXT_NODE = 3;
+
+    var removeSpaces = function (node) {
+      if (node.nodeType == TEXT_NODE) {
+        node.nodeValue = node.nodeValue
+          .replace(/^\s*/gm, '')
+          .replace(/\s*$/gm, '')
+          .replace(/([^a-zA-Z0-9\.\:])\s+([^a-zA-Z0-9])/g, '$1$2');
+      }
+      for (var i = 0, len = node.childNodes.length; i < len; ++i) {
+          removeSpaces(node.childNodes[i]);
+      }
+    };
+
+    $('p, li, dt, dd').each(function () {
+      removeSpaces(this);
+    });
+
+    $('#sidebar').sticky({ topSpacing:16 });
+
+    $(window).scroll(function(){
+      var scrollPosition = $(window).scrollTop();
+      var menuItems = $('#sidebar a');
+
+      var activeItem = menuItems[0];
+      menuItems.each(function() {
+        var target = $($(this).attr('href'));
+        if (target && $(target).offset().top < scrollPosition + 100) {
+          activeItem = this;
+        }
+      });
+
+      menuItems.each(function() {
+        if (this === activeItem) {
+          $(this).parent().addClass('ba__active');
+        }
+        else {
+          $(this).parent().removeClass('ba__active');
+        }
+      });
+    }).scroll();
+  });
+// -->
+</script>
+</body>
+</html>
+
+
+
