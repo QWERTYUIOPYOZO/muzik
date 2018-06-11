@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "5.91/x64" 1528683469
+<REAPER_PROJECT 0.1 "5.91/x64" 1528683638
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -14,7 +14,7 @@
   TIMEMODE 1 5 -1 30 0
   VIDEO_CONFIG 0 0 256
   PANMODE 3
-  CURSOR 44.25
+  CURSOR 24
   ZOOM 18.18818135071854 256 0
   VZOOMEX 6
   USE_REC_CFG 0
@@ -27,7 +27,7 @@
   >
   <APPLYFX_CFG
   >
-  RENDER_FILE "C:\Users\Jayden Heng\Desktop\unnamed2.wav"
+  RENDER_FILE "C:\Users\Me\Documents\GitHub\muzika\unnamed2.wav"
   RENDER_FMT 0 2 44100
   RENDER_1X 0
   RENDER_RANGE 1 0 0 18 1000
@@ -95,7 +95,7 @@
     BUSCOMP 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FREEMODE 0
-    SEL 0
+    SEL 1
     REC 0 5088 1 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0
@@ -245,13 +245,13 @@
     <ITEM
       POSITION 0
       SNAPOFFS 0
-      LENGTH 117
+      LENGTH 72
       LOOP 1
       ALLTAKES 0
       FADEIN 1 0 0 1 0 0
       FADEOUT 1 0 0 1 0 0
       MUTE 0
-      SEL 0
+      SEL 1
       IGUID {26FD999C-2665-4D70-BD96-D86235A5FD69}
       IID 17
       NAME "01-Keyzone Classic-Recorded MIDI"
@@ -540,7 +540,7 @@
         IGNTEMPO 0 120 4 4
         SRCCOLOR 65
         VELLANE -1 100 0
-        CFGEDITVIEW -2728.931679 0.014721 64 12 0 -1 0 0 0 0.5
+        CFGEDITVIEW -6658.258747 0.006072 64 12 0 -1 0 0 0 0.5
         KEYSNAP 0
         TRACKSEL 0
         EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
@@ -957,7 +957,7 @@
       FADEIN 1 0 0 1 0 0
       FADEOUT 1 0 0 1 0 0
       MUTE 0
-      SEL 0
+      SEL 1
       IGUID {876A82DB-C52E-4414-9393-787FE123303B}
       IID 21
       NAME "03-MT-PowerDrumKit-Recorded MIDI"
@@ -1322,7 +1322,7 @@
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FREEMODE 0
     SEL 0
-    REC 1 5088 1 0 0 0 0
+    REC 0 5088 1 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0
     INQ 0 0 0 0.5 100 0 0 100
@@ -1388,7 +1388,7 @@
       FADEIN 1 0 0 1 0 0
       FADEOUT 1 0 0 1 0 0
       MUTE 0
-      SEL 0
+      SEL 1
       IGUID {63270306-EDBE-45D4-B78B-5EDDF38E8487}
       IID 22
       NAME "04-DSK Overture-Recorded MIDI"
