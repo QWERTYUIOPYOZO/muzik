@@ -1,0 +1,6 @@
+sync saw;
+saw;
+square;
+triangle;
++osc2 FM;
+>|x;

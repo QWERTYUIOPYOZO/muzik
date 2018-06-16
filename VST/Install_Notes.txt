@@ -1,0 +1,7 @@
+Installation 
+ 
+To install massTURBOtar, simply copy „massTURBOtar.dll” file into your vst plugins folder.
+ 
+WARNING! massTURBOtar plug-in can generate high levels at its output  (for example  ,it  can 
+be caused by setting a high feedback in filter) –  it is recommended to set a limiter/soft clipper 
+plug-in in a fx plug-in rack of your DAW right after the massTURBOtar. 

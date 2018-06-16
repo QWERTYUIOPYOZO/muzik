@@ -1,0 +1,6 @@
+pw square;
+square;
+quantised sine;
+sine;
+tuned noise;
+>|x;

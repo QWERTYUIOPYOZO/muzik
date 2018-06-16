@@ -1,0 +1,13 @@
+8 bars;
+4 bars;
+2 bars;
+1 bar;
+>|8 steps;
+6 steps;
+4 steps;
+3 steps;
+2 steps;
+>|1 step;
+1/2 step;
+1/4 step;
+>|x;

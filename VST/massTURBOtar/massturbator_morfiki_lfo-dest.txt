@@ -1,0 +1,5 @@
+pitch;
+osc 1 ctrl;
+osc 2 ctrl;
+cutoff;
+>|x;

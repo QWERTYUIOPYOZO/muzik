@@ -1,0 +1,6 @@
+cold12;
+hot 12;
+cold24;
+hot 24;
+cld24+;
+hot24+;
